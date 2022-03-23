@@ -70,7 +70,7 @@ public class RPNStacker{
             System.out.println("File not found.");
             e.printStackTrace();
         }
-        //Exceeption regarding operation
+        //Exception regarding operation
         catch (Exception e) {
             System.out.println("An error has occurred.");
             e.printStackTrace();
