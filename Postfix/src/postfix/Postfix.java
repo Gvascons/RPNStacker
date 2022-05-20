@@ -33,12 +33,12 @@ import postfix.lexer.Token;
 import postfix.parser.Parser;
 import postfix.parser.ParserError;
 
-/**
- * @author Henrique Rebelo
+/*
+  @author Henrique Rebelo
  */
 public class Postfix {
 
-	private static final Interpreter interpreter = new Interpreter();
+	private static final Interpreter interpreter = new Interpreter(new HashMap<String, String>());
 	private static boolean hasError = false;
 	private static boolean debugging = false;
 
@@ -99,7 +99,22 @@ public class Postfix {
 	 */
 	private static void run(String source) {
 		try {
-			Scanner scanner = new Scanner(source);
+			interpreter.env.put("x", "10");
+			interpreter.env.put("y", "20");
+			interpreter.env.put("z", "30");
+
+			// constructs a string builder with no characters in it and an initial capacity of 16 characters.
+			StringBuilder end = new StringBuilder();
+			//////////////////////////////////////////////
+			String[] segment = source.split("\\s+");
+
+			for (String appendVar: segment){
+				end.append(interpreter.env.getOrDefault(appendVar, appendVar));
+				end.append(" ");
+				// related to split
+			}
+
+			Scanner scanner = new Scanner(end);
 			List<Token> tokens = scanner.scan();
 
 			// debugging for tokens

@@ -14,6 +14,8 @@
  *     http://www.cin.ufpe.br/~hemr/
  * ******************************************************************/
 
+import java.util.HashMap;
+
 package postfix.interpreter;
 
 import postfix.ast.Expr;
@@ -22,6 +24,9 @@ import postfix.ast.Expr;
  * @author Henrique Rebelo
  */
 public class Interpreter implements Expr.Visitor<Integer> {
+
+	public final HashMap<String, String> env;
+	public Interpreter(HashMap<String, String> env){this.env = env;}
 
 	public int interp(Expr expression) { 
 		int value = evaluate(expression);
